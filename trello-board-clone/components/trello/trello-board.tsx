@@ -105,6 +105,93 @@ export function TrelloBoard() {
     console.log("Edit card:", card)
   }
 
+  const handleUpdateCard = (listId: string, cardId: string, newTitle: string) => {
+    setLists((prevLists) =>
+      prevLists.map((list) =>
+        list.id === listId
+          ? {
+              ...list,
+              cards: list.cards.map((card) =>
+                card.id === cardId ? { ...card, title: newTitle } : card
+              ),
+            }
+          : list
+      )
+    )
+  }
+
+  const handleArchiveCard = (listId: string, cardId: string) => {
+    setLists((prevLists) =>
+      prevLists.map((list) =>
+        list.id === listId
+          ? {
+              ...list,
+              cards: list.cards.filter((card) => card.id !== cardId),
+            }
+          : list
+      )
+    )
+  }
+
+  const handleToggleCardComplete = (listId: string, cardId: string) => {
+    setLists((prevLists) =>
+      prevLists.map((list) =>
+        list.id === listId
+          ? {
+              ...list,
+              cards: list.cards.map((card) =>
+                card.id === cardId ? { ...card, completed: !card.completed } : card
+              ),
+            }
+          : list
+      )
+    )
+  }
+
+  const handleUpdateCardFull = (listId: string, cardId: string, updates: Partial<CardData>) => {
+    setLists((prevLists) =>
+      prevLists.map((list) =>
+        list.id === listId
+          ? {
+              ...list,
+              cards: list.cards.map((card) =>
+                card.id === cardId ? { ...card, ...updates } : card
+              ),
+            }
+          : list
+      )
+    )
+  }
+
+  const handleUpdateCardLabels = (listId: string, cardId: string, labels: CardData["labels"]) => {
+    setLists((prevLists) =>
+      prevLists.map((list) =>
+        list.id === listId
+          ? {
+              ...list,
+              cards: list.cards.map((card) =>
+                card.id === cardId ? { ...card, labels } : card
+              ),
+            }
+          : list
+      )
+    )
+  }
+
+  const handleArchiveList = (listId: string) => {
+    setLists((prevLists) => prevLists.filter((list) => list.id !== listId))
+  }
+
+  const handleChangeListColor = (listId: string, color: string | null) => {
+    setLists((prevLists) =>
+      prevLists.map((list) =>
+        list.id === listId
+          ? { ...list, color: color || undefined }
+          : list
+      )
+    )
+  }
+
   return (
     <div
       className="min-h-screen flex flex-col"
@@ -128,6 +215,13 @@ export function TrelloBoard() {
                 list={list}
                 onAddCard={handleAddCard}
                 onEditCard={handleEditCard}
+                onUpdateCard={handleUpdateCard}
+                onUpdateCardFull={handleUpdateCardFull}
+                onArchiveCard={handleArchiveCard}
+                onToggleCardComplete={handleToggleCardComplete}
+                onUpdateCardLabels={handleUpdateCardLabels}
+                onArchiveList={handleArchiveList}
+                onChangeListColor={handleChangeListColor}
               />
             ))}
             <AddListButton onAddList={handleAddList} />
