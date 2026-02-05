@@ -19,7 +19,7 @@ export function TrelloCard({ card, onEdit }: TrelloCardProps) {
 
   return (
     <div
-      className="group relative bg-white rounded-lg shadow-sm hover:bg-[#F4F5F7] cursor-pointer transition-colors duration-150"
+      className="group relative bg-white/90 rounded-lg shadow-sm hover:bg-white cursor-pointer transition-all duration-150 active:scale-[0.98]"
       style={{ padding: "8px" }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -38,21 +38,21 @@ export function TrelloCard({ card, onEdit }: TrelloCardProps) {
       )}
 
       {/* Card Title */}
-      <p className="text-sm text-[#172B4D] leading-5 pr-6">{card.title}</p>
+      <p className="text-sm text-[#172B4D] leading-5 break-words" style={{ overflowWrap: "anywhere" }}>{card.title}</p>
 
-      {/* Edit Button - appears on hover */}
-      {isHovered && (
-        <button
-          onClick={(e) => {
-            e.stopPropagation()
-            onEdit?.(card)
-          }}
-          className="absolute top-2 right-2 p-1 rounded hover:bg-[#EBECF0] transition-colors"
-          aria-label="Edit card"
-        >
-          <Pencil className="w-3.5 h-3.5 text-[#6B778C]" />
-        </button>
-      )}
+      {/* Edit Button - appears on hover on the far right */}
+      <button
+        onClick={(e) => {
+          e.stopPropagation()
+          onEdit?.(card)
+        }}
+        className={`absolute top-2 right-2 p-1 rounded hover:bg-black/5 transition-all duration-150 ${
+          isHovered ? "opacity-100" : "opacity-0"
+        }`}
+        aria-label="Edit card"
+      >
+        <Pencil className="w-3.5 h-3.5 text-[#6B778C]" />
+      </button>
     </div>
   )
 }

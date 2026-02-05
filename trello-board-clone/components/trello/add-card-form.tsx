@@ -48,7 +48,7 @@ export function AddCardForm({ onAddCard }: AddCardFormProps) {
     return (
       <button
         onClick={() => setIsAdding(true)}
-        className="flex items-center gap-1 w-full px-2 py-1.5 text-[#5E6C84] hover:bg-[#DFE1E6] rounded-lg transition-colors text-sm font-medium"
+        className="flex items-center gap-1 w-full px-2 py-1.5 text-white/85 hover:bg-white/10 rounded-lg transition-all duration-200 text-sm font-medium"
       >
         <Plus className="w-4 h-4" />
         <span>Add a card</span>
@@ -57,30 +57,30 @@ export function AddCardForm({ onAddCard }: AddCardFormProps) {
   }
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 animate-slide-down">
       <textarea
         ref={textareaRef}
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder="Enter a title for this card..."
-        className="w-full min-h-[54px] p-2 text-sm rounded-lg border-none shadow-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#0079BF]"
-        style={{ backgroundColor: "#FFFFFF" }}
+        rows={3}
+        className="w-full p-2 text-sm rounded-lg border-none shadow-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-[#172B4D] placeholder:text-gray-400"
       />
       <div className="flex items-center gap-1">
         <button
           onClick={handleSubmit}
           disabled={!title.trim()}
-          className="px-3 py-1.5 bg-[#0079BF] text-white text-sm font-medium rounded hover:bg-[#026AA7] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-3 py-1.5 bg-[#22c55e] text-white text-sm font-medium rounded hover:bg-[#16a34a] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Add card
         </button>
         <button
           onClick={handleCancel}
-          className="p-1.5 hover:bg-[#DFE1E6] rounded transition-colors"
+          className="p-1.5 hover:bg-white/10 rounded transition-colors"
           aria-label="Cancel"
         >
-          <X className="w-5 h-5 text-[#6B778C]" />
+          <X className="w-5 h-5 text-white/70" />
         </button>
       </div>
     </div>

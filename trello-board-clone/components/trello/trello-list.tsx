@@ -22,20 +22,23 @@ export function TrelloList({ list, onAddCard, onEditCard }: TrelloListProps) {
       className="flex-shrink-0 flex flex-col rounded-xl max-h-full"
       style={{
         width: "272px",
-        backgroundColor: "#EBECF0",
+        backgroundColor: "rgba(0, 0, 0, 0.25)",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
+        border: "1px solid rgba(255, 255, 255, 0.1)",
         padding: "10px",
       }}
     >
       {/* List Header - Sticky */}
-      <div className="flex items-center justify-between mb-2 sticky top-0 bg-[#EBECF0] z-10 pb-1">
-        <h3 className="text-sm font-semibold text-[#172B4D] px-1.5">
+      <div className="flex items-center justify-between mb-2 sticky top-0 z-10 pb-1" style={{ backgroundColor: "rgba(0, 0, 0, 0.25)" }}>
+        <h3 className="text-sm font-bold text-white px-1.5">
           {list.title}
         </h3>
         <button
-          className="p-1.5 hover:bg-[#DFE1E6] rounded transition-colors"
+          className="p-1.5 hover:bg-white/10 rounded transition-colors"
           aria-label="List options"
         >
-          <MoreHorizontal className="w-4 h-4 text-[#6B778C]" />
+          <MoreHorizontal className="w-4 h-4 text-white/70" />
         </button>
       </div>
 

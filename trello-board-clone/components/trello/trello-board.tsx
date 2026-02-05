@@ -108,7 +108,9 @@ export function TrelloBoard() {
   return (
     <div
       className="min-h-screen flex flex-col"
-      style={{ backgroundColor: "#0079BF" }}
+      style={{ 
+        background: "linear-gradient(to bottom right, #1e1b4b, #4c1d95)"
+      }}
     >
       {/* Board Header */}
       <BoardHeader title="My Trello Board" />
