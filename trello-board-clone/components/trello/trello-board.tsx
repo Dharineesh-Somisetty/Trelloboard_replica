@@ -196,7 +196,7 @@ export function TrelloBoard() {
     <div
       className="min-h-screen flex flex-col"
       style={{ 
-        background: "linear-gradient(to bottom right, #1e1b4b, #4c1d95)"
+        background: "linear-gradient(135deg, #1a0b2e 0%, #2d1b4e 25%, #4a1d6f 50%, #6b2d8f 75%, #8b4a9f 100%)"
       }}
     >
       {/* Board Header */}

@@ -245,11 +245,14 @@ export function TrelloCard({
           <div className="flex flex-wrap gap-1 mb-2">
             {card.labels.map((label, index) => (
               <LabelTooltip key={index} label={label}>
-                <span
-                  className="h-2 rounded-sm cursor-pointer hover:brightness-110 transition-all"
+                <div
+                  className="block rounded cursor-pointer hover:brightness-110 transition-all"
                   style={{ 
                     backgroundColor: label.color,
-                    width: "40px"
+                    width: "40px",
+                    height: "8px",
+                    borderRadius: "4px",
+                    minHeight: "8px",
                   }}
                 />
               </LabelTooltip>
@@ -268,7 +271,7 @@ export function TrelloCard({
             {card.completed ? (
               <CheckCircle2 className="w-4 h-4 text-green-500" />
             ) : (
-              <Circle className="w-4 h-4 text-white/50 hover:text-white/70" />
+              <Circle className="w-4 h-4 text-white/50 opacity-0 group-hover:opacity-100 transition-opacity duration-150" />
             )}
           </button>
 
