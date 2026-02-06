@@ -26,6 +26,12 @@ In alignment with the "Velocity & Efficiency" evaluation dimension, this project
 
 - **Surgical Logic Refinement:** Once the foundation was set, I migrated to VS Code to implement complex state-driven interactions using GitHub Copilot. This allowed me to focus purely on "extreme attention to detail"—such as the specific tooltip formatting and the multi-state Quick-Edit overlay—which generalized AI outputs often overlook.
 
+### Phase 3: High-Fidelity Interaction Tuning
+
+Conditional UI Logic: Implemented Trello’s "hover-to-reveal" logic for incomplete task checkboxes, while ensuring completed tasks remain globally visible. This demonstrates an understanding of user-intent and state-driven visibility.
+
+Edge Case Engineering: Manually engineered the Label Strip system, including custom tooltip logic that handles the title: "none" fallback. This was a critical manual override of the initial AI scaffolding to achieve 1:1 visual parity with the reference application.
+
 ## 4. Technical Implementation & Scalability
 The code is structured as an elegant, modular, and production-ready system:
 
@@ -40,6 +46,7 @@ The code is structured as an elegant, modular, and production-ready system:
 
 Notes: see project files for exact dependency versions and additional configuration. If you encounter peer dependency issues, running `npm install --legacy-peer-deps` can help on legacy Node installations.
 
----
+
+
 Created as part of a technical assessment for Verita AI — RL Environments Engineer.
 

@@ -30,22 +30,25 @@ export function LabelsEditor({
   onClose, 
   onUpdateLabels 
 }: LabelsEditorProps) {
-  const [labels, setLabels] = useState<LabelData[]>(currentLabels)
   const [editingLabel, setEditingLabel] = useState<number | null>(null)
   const [editText, setEditText] = useState("")
 
+  // Use currentLabels directly from props — always in sync with card state
   const isLabelSelected = (color: string) => {
-    return labels.some(l => l.color === color)
+    return currentLabels.some(l => l.color === color)
   }
 
+  // Toggle immediately updates the card via onUpdateLabels (like real Trello)
   const toggleLabel = (standardLabel: LabelData) => {
+    let newLabels: LabelData[]
     if (isLabelSelected(standardLabel.color)) {
       // Remove the label
-      setLabels(labels.filter(l => l.color !== standardLabel.color))
+      newLabels = currentLabels.filter(l => l.color !== standardLabel.color)
     } else {
       // Add the label
-      setLabels([...labels, { ...standardLabel }])
+      newLabels = [...currentLabels, { ...standardLabel }]
     }
+    onUpdateLabels(newLabels)
   }
 
   const startEditing = (index: number, label: LabelData) => {
@@ -54,22 +57,16 @@ export function LabelsEditor({
   }
 
   const saveEdit = (index: number) => {
-    const updatedLabels = [...STANDARD_LABELS]
-    updatedLabels[index] = { ...updatedLabels[index], text: editText }
     setEditingLabel(null)
-    // If this label is selected, update it
+    // If this label is selected, update its text
     if (isLabelSelected(STANDARD_LABELS[index].color)) {
-      setLabels(labels.map(l => 
+      const newLabels = currentLabels.map(l => 
         l.color === STANDARD_LABELS[index].color 
           ? { ...l, text: editText }
           : l
-      ))
+      )
+      onUpdateLabels(newLabels)
     }
-  }
-
-  const handleSave = () => {
-    onUpdateLabels(labels)
-    onClose()
   }
 
   return (
@@ -162,16 +159,6 @@ export function LabelsEditor({
                 </div>
               </div>
             )}
-
-            {/* Footer */}
-            <div className="px-3 pb-3 pt-2 border-t border-white/10">
-              <button
-                onClick={handleSave}
-                className="w-full py-2 bg-blue-500 text-white text-sm font-medium rounded hover:bg-blue-600 transition-colors"
-              >
-                Done
-              </button>
-            </div>
           </motion.div>
         </>
       )}
